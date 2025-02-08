@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Влюблённых! ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ff99cc;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            color: #cc0066;
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff0066;
+            font-size: 24px;
+            animation: float 3s infinite ease-in-out;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .tap-hint {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">С Днём Влюблённых! 💖</h1>
+        <div id="content">
+            <p>Пусть сегодняшний день будет наполнен</p>
+            <p>теплом, нежностью и взаимностью!</p>
+        </div>
+    </div>
+    <div class="tap-hint">Нажми на экран для продолжения 👆</div>
+
+    <script>
+        // Массив сообщений
+        const messages = [
+            {
+                title: "С праздником! 🌹",
+                content: `
+                    <p>Любви, которая окрыляет,</p>
+                    <p>И чувств, что согревают душу!</p>
+                    <p>❤️❤️❤️</p>
+                `
+            },
+            {
+                title: "Ты особенная! 💌",
+                content: `
+                    <p>Даже если сейчас ты одна,</p>
+                    <p>моя любовь всегда рядом с тобой !</p>
+                    <p>✨✨✨</p>
+                `
+            },
+            {
+                title: "Счастья! 🎉",
+                content: `
+                    <p>Пусть каждый день приносит</p>
+                    <p>радость и приятные сюрпризы!</p>
+                    <p>💫💫💫</p>
+                `
+            },
+            {
+                title: "Вдохновения! 🌟",
+                content: `
+                    <p>Пусть сердце всегда стремится</p>
+                    <p>к чему-то прекрасному!</p>
+                    <p>🌠🌠🌠</p>
+                `
+            },
+            {
+                title: "Запомни что я всегда рядом!",
+                content: `
+                     <p>Всегда поддержу тебя чтоб это не было</p>
+                     <p>Бесконечно люблю тебя и целую</p>
+                      <p>С любовью твой любимый Кто то там</p>
+                `
+            }
+        
+            ];
+
+        let currentMessage = 0;
+
+        // Создание сердечек
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5009);
+        }
+
+        // Генерация сердечек
+        setInterval(createHeart, 250);
+
+        // Обработчик клика
+        document.body.addEventListener('click', () => {
+            currentMessage = (currentMessage + 1) % messages.length;
+            document.getElementById('title').innerHTML = messages[currentMessage].title;
+            document.getElementById('content').innerHTML = messages[currentMessage].content;
+        });
+    </script>
+</body>
+</html>
